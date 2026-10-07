@@ -20,3 +20,71 @@ const pedidosBrutos = [
 ];
 
 // ✅ SEU CÓDIGO AQUI
+
+function normalize (a) {
+  if (parseFloat(String(a).replaceAll(",", "."))) {
+    return parseFloat(String(a).replaceAll(",", "."))
+  }
+  if (parseInt(a)) {
+    return parseInt(a)
+  }
+  else {
+    return a.toUpperCase().replaceAll(" ", "")
+  }
+}
+
+const objFinal = {}
+
+pedidosBrutos.forEach(pedido => {
+
+  const chave = normalize(pedido.cliente)
+  if (!objFinal[chave]) {
+    objFinal[chave] = {cliente: pedido.cliente == ""? "(Sem Nome)" : pedido.cliente, itens: {}}
+  } 
+
+  pedido.itens.forEach(i => {
+    const chaveItem = normalize(i.nome)
+    if (!objFinal[chave].itens[chaveItem]) {
+      objFinal[chave].itens[chaveItem] = {nome: i.nome, qtd: normalize(i.qtd), valor: normalize(i.valor)}
+    }
+    else {
+      objFinal[chave].itens[chaveItem].qtd += normalize(i.qtd)
+      objFinal[chave].itens[chaveItem].valor += normalize(i.valor)
+    }
+
+  })
+
+})
+
+let acumulador = 0
+
+Object.entries(objFinal).forEach(cliente => {
+
+  const itens = Object.entries(cliente[1]["itens"])
+  const valores = itens.map(item => item[1]["valor"])
+  const total = valores.reduce((a, b) => a + b, 0)
+
+  console.log("-".repeat(100))
+  console.log(``)
+  console.log(`O cliente ${cliente[1].cliente} comprou:`)
+  console.log(``)
+
+  itens.forEach(item => {
+    
+    const uni = item[1]["qtd"] == 1 ? "unidade" : "unidades"
+    
+    console.log(`${item[1]["qtd"]} ${uni} de ${item[1]["nome"]}, no valor total de ${item[1]["valor"]}`)
+
+    acumulador += item[1]["valor"]
+  })
+  
+  console.log(``)
+  console.log(`Total de compra: ${total}`)
+  console.log(``)
+})
+
+console.log("-".repeat(100))
+console.log(``)
+console.log(`O valor total considerando todos os produtos comprados foi de ${acumulador}`)
+console.log(``)
+console.log("-".repeat(100))

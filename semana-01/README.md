@@ -48,13 +48,13 @@ const pedidosBrutos = [
 
 ## Requisitos (o que conta como pronto)
 
-- [ ] Roda com `node solucao.js` sem erro.
-- [ ] Agrupa clientes equivalentes (ver "Katia Sam").
-- [ ] Agrupa o cliente sem nome em `(sem nome)`.
-- [ ] Consolida itens repetidos somando a quantidade.
-- [ ] Converte valores string→número corretamente (lida com `.` e `,`).
-- [ ] Imprime um resumo legível (cliente → itens → total do cliente) + total geral.
-- [ ] **Escreve o algoritmo você mesmo** (sem lib mágica, sem IA entregando a resposta).
+- [x] Roda com `node solucao.js` sem erro.
+- [x] Agrupa clientes equivalentes (ver "Katia Sam").
+- [x] Agrupa o cliente sem nome em `(sem nome)`.
+- [x] Consolida itens repetidos somando a quantidade.
+- [x] Converte valores string→número corretamente (lida com `.` e `,`).
+- [x] Imprime um resumo legível (cliente → itens → total do cliente) + total geral.
+- [x] **Escreve o algoritmo você mesmo** (sem lib mágica, sem IA entregando a resposta).
 
 ## Restrição pedagógica
 
